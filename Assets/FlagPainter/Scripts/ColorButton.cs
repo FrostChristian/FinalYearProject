@@ -11,7 +11,7 @@ namespace FlagPainter {
     public class ColorButton : MonoBehaviour {
 
         #region Variables
-        public Color myColor = new Color(0f, 0f, 0f, 1f);
+        public Color myColor = new Color(0f, 0f, 0f, 1f); 
         private Button thisButton;
         #endregion
 

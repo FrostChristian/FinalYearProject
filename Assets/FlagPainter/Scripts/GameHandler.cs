@@ -46,6 +46,7 @@ namespace FlagPainter {
 
         private void Update() {
             HandleUserInput(); // listen for input
+
         }
         #endregion Unity Methods
 
@@ -74,6 +75,11 @@ namespace FlagPainter {
 
         /// ---------------------------------- User Input ---------------------------------- ///
         private void HandleUserInput() {
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                GUIHandler.OnQuitClick_Static();
+            }
+
             if (Input.GetAxisRaw("Fire1") != 0) { // check for User input on "Fire1" Input
                 if (!_isTouchInputActive) { // make sure this will only be called once
                     _isTouchInputActive = true;

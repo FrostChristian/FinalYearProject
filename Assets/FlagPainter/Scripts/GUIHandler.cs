@@ -15,9 +15,8 @@ namespace FlagPainter {
         #region Variables
         public static GUIHandler _instance;
         [SerializeField] private Text _questionText = default;
+        [SerializeField] private Text _flagNameText = default;
         [SerializeField] private Text _scoreText = default;
-        [SerializeField] private Button _colorButton = default;
-        [SerializeField] private GameObject _colorsPanel = default;
         [SerializeField] private List<GameObject> _colorSplashesInPanel = new List<GameObject>();
 
         private Flag _currentFlag = default;
@@ -34,13 +33,15 @@ namespace FlagPainter {
 
         void Start() {
             UpdateGUI();
-        }        
+        }
         #endregion
 
         private void UpdateGUI() {
-            _scoreText.text = GameHandler.Instance.Score.ToString();
             _currentFlag = FlagHandler.GetCurrentlyActiveFlagGameObject().GetComponent<Flag>();
+
+            _flagNameText.text = _currentFlag._flagName.ToUpper(); // convert to uppercase string for FONT effect
             _questionText.text = "Can you fill in the correct colors for the " + _currentFlag._flagName + " Flag?";
+            _scoreText.text = "score: " + GameHandler.Instance.Score.ToString();
             GameHandler.Instance.ResetActiveColor();
             SpawnFlagColorSplashButtons();
         }
@@ -54,26 +55,11 @@ namespace FlagPainter {
             }
         }
 
-        private void SpawnFlagColorButtons() {
-            for (int i = 0; i < _currentFlag.FlagMatches.Count; i++) {
-                Button go = Instantiate(_colorButton, _colorsPanel.transform);
-                go.GetComponent<ColorButton>().myColor = _currentFlag.FlagMatches[i].targetColor;
-                go.gameObject.SetActive(true);
-                _colorSplashesInPanel.Add(go.gameObject);
-            }
-        }
-
         private void ClearColorSplashButtons() {
             foreach (GameObject go in _colorSplashesInPanel) {
                 Destroy(go);
             }
             _colorSplashesInPanel.Clear();
-        } 
-        private void ClearPanelSplashes() {
-            foreach (GameObject go in _colorSpawns) {
-                Destroy(go);
-            }
-            _colorSpawns.Clear();
         }
 
         public static void UpdateGUI_Static() {
@@ -86,7 +72,7 @@ namespace FlagPainter {
         }
 
         public void OnPreviousClicked() {
-            FlagHandler.Instance.PreviousFlag();        
+            FlagHandler.Instance.PreviousFlag();
             UpdateGUI();
         }
 
@@ -94,7 +80,15 @@ namespace FlagPainter {
             GameHandler.Instance.ResetActiveColor();
             foreach (SpriteRenderer rend in FlagHandler.GetCurrentlyActiveFlagGameObject().GetComponentsInChildren<SpriteRenderer>()) {
                 GameHandler.SetSpriteRendererColor(rend, GameHandler.DefaultColor);
-            } 
+            }
+        }
+
+        public void OnQuitClick() {
+            Application.Quit();
+        }
+
+        public static void OnQuitClick_Static() {
+            _instance.OnQuitClick();
         }
     }
 }
