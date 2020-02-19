@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FlagPainter/Scenes/FlagPainter.unity
+    guid: cac139959daae2341885ffc9db91fb7c
   m_configObjects: {}

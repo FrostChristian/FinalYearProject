@@ -20,7 +20,7 @@ namespace FlagPainter {
 
         private Flag _currentFlag = default;
 
-        public GameObject colorSplashPrefab = default;
+        public List<GameObject> colorSplashPrefab = new List<GameObject>();
         public Image paintBucketImage = default;
         public Image paintBucketHighlightImage = default; // in case of active black color, change color of highlight
         [SerializeField] private List<GameObject> _colorSpawns = new List<GameObject>();
@@ -44,7 +44,7 @@ namespace FlagPainter {
             _currentFlag = FlagHandler.GetCurrentlyActiveFlagGameObject().GetComponent<Flag>();
             _flagNameText.text = _currentFlag._flagName.ToUpper(); // convert to uppercase string for FONT effect
             _questionText.text = "Can you fill in the correct colors for the " + _currentFlag._flagName + " Flag?";
-            _scoreText.text = "score: " + GameHandler.Instance.Score.ToString();
+            _scoreText.text = "Score: " + GameHandler.Instance.Score.ToString();
             GameHandler.Instance.ResetActiveColor();
             paintBucketImage.color = GameHandler.DefaultColor;
             SpawnFlagColorSplashButtons();
@@ -57,7 +57,7 @@ namespace FlagPainter {
         private void SpawnFlagColorSplashButtons() {
             ClearColorSplashButtons();
             for (int i = 0; i < _currentFlag.FlagMatches.Count; i++) {
-                GameObject go = Instantiate(colorSplashPrefab, _colorSpawns[i].transform);
+                GameObject go = Instantiate(colorSplashPrefab[Random.Range(0, colorSplashPrefab.Count)], _colorSpawns[i].transform);
                 go.GetComponentInChildren<ColorButton>().myColor = _currentFlag.FlagMatches[i].targetColor;
                 _colorSplashesInPanel.Add(go.gameObject);
             }
@@ -72,20 +72,23 @@ namespace FlagPainter {
 
         public void OnNextClicked() {
             FlagHandler.Instance.NextFlag();
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
         }
 
         public void OnPreviousClicked() {
             FlagHandler.Instance.PreviousFlag();
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
         }
 
         public void OnHintClicked() {
-            if (hintActive) {
+                        if (hintActive) {
                 hintActive = false;
             } else {
                 hintActive = true;
                 GameHandler.Instance.AddScore(-10);
                 _scoreText.text = "score: " + GameHandler.Instance.Score.ToString();
             }
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
         }
 
         public void OnResetClicked() {
@@ -98,10 +101,12 @@ namespace FlagPainter {
 
         public void OnEraserClicked() {
             GameHandler.Instance.ResetActiveColor();
-            paintBucketImage.color = GameHandler.DefaultColor; SoundHandler.PlayRandomSound("ColorFill");
+            paintBucketImage.color = GameHandler.DefaultColor;
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
         }
 
-        public void OnQuitClick() {
+        private void OnQuitClick() {
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
             Application.Quit();
         }
 

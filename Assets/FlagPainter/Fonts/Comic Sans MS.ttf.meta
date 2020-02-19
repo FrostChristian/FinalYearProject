@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4b837a68280b2b4d9423dab315fbc71
+guid: 72491ae9e052af040aebb078bb565522
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,10 +8,11 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Caveman
+  fontName: Comic Sans MS
   fontNames:
-  - Caveman
-  fallbackFontReferences: []
+  - Comic Sans MS
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 24be61908b245cd439ff6ca8e6d1df8f, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
