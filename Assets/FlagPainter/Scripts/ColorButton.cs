@@ -11,7 +11,7 @@ namespace FlagPainter {
     public class ColorButton : MonoBehaviour {
 
         #region Variables
-        public Color myColor = new Color(0f, 0f, 0f, 1f); 
+        public Color myColor = new Color(0f, 0f, 0f, 1f);
         private Button thisButton;
         #endregion
 
@@ -28,6 +28,12 @@ namespace FlagPainter {
 
         void OnThisButtonClick() {
             GameHandler.Instance.UpdadeActiveColor(myColor);
+            GUIHandler.Instance.paintBucketImage.color = myColor;
+            //if (GameHandler.CompareColors(myColor, Color.black)) { // useless function atm
+            //    Debug.Log("Im black");
+            //    GUIHandler.Instance.paintBucketHighlightImage.color = Color.white;
+            //}
+            SoundHandler.PlayRandomSound("ColorFill");
         }
 
     }

@@ -1264,6 +1264,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 0
+  gameAudioClips:
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 81329d756402e744f96800c799f9e323, type: 3}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 84a6df37e648d7646b3f7e2df879dd75, type: 3}
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: 7042fc7c8cfef1542be6dbb7855af72e, type: 3}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 65b0905950bd5ab41a357f0e9a2e23f6, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: 96d367c46eee3ea4f9fc49723c5a1017, type: 3}
+  - sound: 6
+    audioClip: {fileID: 8300000, guid: b3e073a923d346b45bba71b2a0b4f238, type: 3}
+  - sound: 2
+    audioClip: {fileID: 8300000, guid: 7eb8f239c1e1f7841a76e4f28bd0e696, type: 3}
 --- !u!1 &1014603076
 GameObject:
   m_ObjectHideFlags: 0

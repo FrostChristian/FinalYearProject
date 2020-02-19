@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FlagPainter {
 
@@ -20,6 +21,8 @@ namespace FlagPainter {
         [SerializeField] private static GameObject _currentFlag = default; //current flag prefab
         [Space]
         [SerializeField] private GameObject _flagSpawn = default; //pos for instantiation
+        public Sprite incorrectSprite;
+        public Sprite correctSprite;
         #endregion
 
         #region Unity Methods
@@ -35,9 +38,11 @@ namespace FlagPainter {
 
         private void SpawnFlag(int index) {
             if (_currentFlag != null) {
-                Destroy(_currentFlag);        
+                Destroy(_currentFlag);
             }
             _currentFlag = Instantiate(_Flags[index], _flagSpawn.transform);
+            GUIHandler.UpdateGUI_Static();
+
         }
 
         public void ClampFlagIndex() { //wrap around list
