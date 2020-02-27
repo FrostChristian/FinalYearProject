@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FlagPainter/Scenes/FlagPainter.unity
+    path: Assets/Scenes/Placeholder.unity
+    guid: b0207d1b2e92497439e7e2d26c3d1451
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6e6df790e39def34bb64d438c20d1f9a
+  - enabled: 1
+    path: Assets/Games/FlagPainter/Scenes/FlagPainter.unity
     guid: cac139959daae2341885ffc9db91fb7c
+  - enabled: 1
+    path: Assets/Games/BoxMatch/Scenes/BoxMatch.unity
+    guid: 5896314c48ac0e344b0d98aac8c12d1d
   m_configObjects: {}
