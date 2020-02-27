@@ -1,7 +1,7 @@
 # Final Year Project (Positive Identitys)
 FromGrpProject
 
-# v0.1:
+# v0.10:
 Renamed from FlagPainter to Final Year Project
 Updated from Unity 2018.4.16f1 to Unity 2019.3.3f1
 
