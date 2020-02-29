@@ -1,7 +1,18 @@
 # Final Year Project (Positive Identitys)
-FromGrpProject
+From Group Project
 
-# v0.10:
+# v0.5.1:
+
+Flag Painter:
+Added new Flags
+ - Genderfluid
+ - Bisexual
+ - Pansexual
+ - Polysexual
+ - Lesbien
+ - Genderqueer
+
+# v0.5.0:
 Renamed from FlagPainter to Final Year Project
 Updated from Unity 2018.4.16f1 to Unity 2019.3.3f1
 
@@ -20,7 +31,7 @@ Box Match Game!
  - Correct box adds +50 Score
  - Incorrect box opens explanation video
 
-# v0.04:
+# v0.4.0:
 
 Artstyle Change
 - Enviroment
@@ -30,7 +41,7 @@ Artstyle Change
 
 Minor Bug Fixed
 
-# v0.03:
+# v0.3.0:
 
 SoundsManager + Sounds
 
@@ -44,6 +55,6 @@ HintsSystem
 
 - Canvas Camera View
 
-# v0 - v0.02
+# v0.1.0 - v0.2.0
 
 - Base Game
