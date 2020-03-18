@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 namespace FinalYear.BoxMatch {
 
     public class GameHandler : MonoBehaviour {
+
         #region Variables
         private static GameHandler _instance;
         public static GameHandler Instance { get => _instance; set => _instance = value; }
@@ -19,7 +20,7 @@ namespace FinalYear.BoxMatch {
 
         public List<Card> cardList = new List<Card>();
         //[HideInInspector] 
-        public List<Card> _tempCardList; // cards add/remove themselfs to this themselfs // for replay purposes
+        public List<Card> _tempCardList; // holds cards so actual cardList wont get messed up
 
         private static CardBox _choosenCardBox = default;
         public static CardBox ChoosenCardBox { get => _choosenCardBox; set => _choosenCardBox = value; }
@@ -38,14 +39,18 @@ namespace FinalYear.BoxMatch {
                 _instance = this;
             }
             _score = 0;
-            CardHandler.Instance.SpawnCards();
-            GUIHandler.Instance.UpdateGUI();
 
             if (SceneManager.GetActiveScene().name == "BoxMatch") {
                 BoxMatchMenu.Open();
                 Debug.Log("GameManager Awake(): Entered Game through BoxMatch");
             }
         }
+        private void Start() {
+            CardSpawner.Instance.SpawnCards();
+            GUIHandler.Instance.UpdateGUI();
+
+        }
+
         private void Update() {
             if (_tempCardList.Count == 0) {
                 GUIHandler.Instance.ShowWinPanel();
@@ -55,7 +60,6 @@ namespace FinalYear.BoxMatch {
 
         private void AddScore(int score) {
             _score += score;
-            Debug.Log("AddScore");
         }
 
         public static void ResetScore() {

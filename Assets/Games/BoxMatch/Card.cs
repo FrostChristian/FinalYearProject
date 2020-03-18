@@ -15,64 +15,65 @@ namespace FinalYear.BoxMatch {
     public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
         #region Variables
-        [SerializeField] private bool _draggingCard;
-        [SerializeField] private Vector3 _originalPosition = Vector3.zero;
-        [SerializeField] private Vector3 _currentPosition;
-        [SerializeField] private float lerpSpeed = 10f;
-        [SerializeField] private float lerpStopDistance = 0.1f;
+        [Header("Card")]
         [SerializeField] private int _cardCategory = 1;
         public int GetCardCategory { get => _cardCategory; }
-
+        [Space]
+        [SerializeField] private bool _draggingCard;
+        [Space]
+        [Header("Card Lerp")]
+        [SerializeField] private float lerpSpeed = 10f;
+        [SerializeField] private float lerpStopDistance = 0.1f;
+        [SerializeField] private float _lerpUpdateTime = .3f;
+        public Transform _pointer = default; // lerp target!
         #endregion
 
         #region Unity Methods
         private void Awake() {
             GameHandler.Instance._tempCardList.Add(this);
         }
-        private void Update() {
-            if (_originalPosition == Vector3.zero) { // wait for grouplayout placement in scene and init position vars
-                _originalPosition = transform.position;
-            }
 
+        private void Start() {
+            StartCoroutine(LerpCard()); // start checking this card for its position, if its not at its pointer position it will lerp to it
+        }
+
+        private void Update() {
             if (_draggingCard) {
                 transform.position = Input.mousePosition; // position card at mouse pointer
-                _currentPosition = transform.position;
-            } else {
-
             }
-            //Debug.Log("Curr pos : " + _currentPosition + "\n Real pos: " + gameObject.transform.position + "\n Orig Pos: " + _originalPosition + "\n Name: " + gameObject.transform.name);
         }
+        #endregion
 
         public void OnPointerDown(PointerEventData eventData) {
             GameHandler.ActiveCard = this; // set active card to this
-            _originalPosition = transform.position;
             _draggingCard = true;
         }
 
         public void OnPointerUp(PointerEventData eventData) {
             _draggingCard = false;
-            CheckForCardBox();
+            CheckForCorrectBox();
         }
 
-        private IEnumerator MoveCardToOrigin() {// move cards back to origin
-            while (Vector3.Distance(transform.position, _originalPosition) > lerpStopDistance) { // lerp back to original position
-                transform.position = Vector3.Lerp(transform.position, _originalPosition, lerpSpeed * Time.deltaTime);
-                Debug.Log(Vector3.Distance(transform.position, _originalPosition) + "Lerping");
+        private IEnumerator LerpCard() {// lerp back to original position
+            while (Vector3.Distance(transform.position, _pointer.position) > lerpStopDistance && !_draggingCard) { // dist check
+                transform.position = Vector3.Lerp(transform.position, _pointer.position, lerpSpeed * Time.deltaTime); //lerp
+                //Debug.Log(Vector3.Distance(transform.position, _pointer.position) + "Lerping");
                 yield return null;
             }
+            yield return new WaitForSeconds(UnityEngine.Random.Range(_lerpUpdateTime, _lerpUpdateTime +.1f)); // wait before lerping again!
+            StartCoroutine(LerpCard()); // loop
         }
 
-        private void CheckForCardBox() {
+        private void CheckForCorrectBox() {
             PointerEventData pointerData = new PointerEventData(EventSystem.current) { // get Pointer data
                 position = Input.mousePosition // at mouse position
             };
             List<RaycastResult> results = new List<RaycastResult>(); // store hits in here
-            EventSystem.current.RaycastAll(pointerData, results); // raycast all elements at pointer
-
+            EventSystem.current.RaycastAll(pointerData, results); // raycast to all elements at pointer
             if (results.Count > 0) { // if we hit something
                 foreach (RaycastResult rcr in results) {
                     if (rcr.gameObject.GetComponentInParent<CardBox>() != null) { // look for CardBoxes
-                        CardBox cb = rcr.gameObject.GetComponentInParent<CardBox>();
+                        CardBox cb = rcr.gameObject.GetComponentInParent<CardBox>(); // referenc to cardbox
                         GameHandler.ChoosenCardBox = cb;
                         if (cb.GetBoxCategory == GetCardCategory) { // check for category
                             // On right Box found!
@@ -85,12 +86,13 @@ namespace FinalYear.BoxMatch {
                         }
                     }
                 }
+            } else {
+                Debug.LogWarning("Card.cs CheckForCorrectBox(): NO OBJECT FOR RAYCAST FOUND!");
             }
-            StartCoroutine(MoveCardToOrigin()); 
         }
-        #endregion
+
         public void Destroy() {
-            GameHandler.Instance._tempCardList.Remove(this);
+            Destroy(_pointer.gameObject); // destroy pointer obj
             Destroy(gameObject);
         }
     }

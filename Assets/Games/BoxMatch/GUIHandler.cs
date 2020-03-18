@@ -37,6 +37,7 @@ namespace FinalYear.BoxMatch {
         }
 
         #endregion
+
         public void ShowDialogPanel() {
             var card = GameHandler.ActiveCard.GetCardCategory.ToString();
             var box = GameHandler.ChoosenCardBox.GetBoxCategory.ToString();
@@ -57,7 +58,7 @@ namespace FinalYear.BoxMatch {
 
         public void OnRestartClicked() {
             GameHandler.ResetScore();
-            CardHandler.Instance.SpawnCards();
+            CardSpawner.Instance.SpawnCards();
             UpdateGUI();
             winPanel.SetActive(false);
         }
