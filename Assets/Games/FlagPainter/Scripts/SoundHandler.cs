@@ -14,6 +14,7 @@ namespace FinalYear.FlagPainter {
         #region Variables
         private static GameObject oneShotGameObject;
         private static AudioSource oneShotAudioSource;
+        public static bool _isMuted = false;
         #endregion
 
         public enum Sounds { // all possible sounds,  assign in inspector
@@ -28,7 +29,11 @@ namespace FinalYear.FlagPainter {
         }
 
         public static void PlaySound(Sounds sound) {
-                if (oneShotGameObject == null) {
+            if (_isMuted) { // dont play sound if muted
+                return;
+            }
+
+            if (oneShotGameObject == null) {
                     oneShotGameObject = new GameObject("SoundSource");
                     oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
                 }
@@ -36,6 +41,10 @@ namespace FinalYear.FlagPainter {
         }
 
         public static void PlayRandomSound(string containsString) {
+            if (_isMuted) { // dont play sound if muted
+                return;
+            }
+
             if (oneShotGameObject == null) {
                 oneShotGameObject = new GameObject("One Shot Sound");
                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();

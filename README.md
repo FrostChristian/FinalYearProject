@@ -1,5 +1,43 @@
-# Final Year Project (Positive Identitys)
+# Final Year Project (Positive Identities)
 From Group Project
+
+# v0.7.0:
+
+> Box Match Game:
+
+Scripting:
+
+   Sound:
+ - Added Sound Functionality (SoundHandler)
+ - Added Mute Function
+
+   Cards:
+ - Added 17 new Cards
+ - Added "CardSet" Scriptable Object for easy adding of new cards via the Inspector (no card limit)
+   10 Cards displayed at a time on the board
+   After completing the cards on the board, you will be asked to load the next batch of unanswered questions
+
+ - Used cards will be marked as answered and not be displayed again until reloading the scene  
+
+UI:
+ - Animated Dialog Window
+ - Highlighting boxes on Dragging over
+ - Added Mute Button x 512px
+
+Textures:
+ - Added Sprites in Cartoon Art style
+
+> Flag Painter Game:
+
+UI:
+ - Added Mute Button
+
+Changed Flags:
+ - Aromantic to Asexual
+ - Removed Polysexual
+
+Misc:
+ - Added Background Sound
 
 # v0.6.0:
 
@@ -11,13 +49,13 @@ Box Match Game:
 Project now using Semantic Versioning:
 old v0.10 == new v0.5.0;
 
-Flag Painter:
+Flag Painter Game:
 Added new Flags
  - Genderfluid
  - Bisexual
  - Pansexual
  - Polysexual
- - Lesbien
+ - Lesbian
  - Genderqueer
 
 Textures:
@@ -45,8 +83,8 @@ Box Match Game!
 
 # v0.04:
 
-Artstyle Change
-- Enviroment
+Art style Change
+- Environment
 - Buttons 4x 256px
 - Buttons 9x 512px
 - Isle, Bucket, Palette, Fags... etc

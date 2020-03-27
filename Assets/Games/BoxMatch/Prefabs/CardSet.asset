@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf7a48842be2de4fa778fa3ca0500cf, type: 3}
+  m_Name: CardSet
+  m_EditorClassIdentifier: 
+  _cardsSOList:
+  - _stereotypeName: Sports
+    _cardCategory: 1
+    _descriptionShort: Sport participation has been regarded as a masculine activity.
+    _answered: 0
+  - _stereotypeName: Video Games
+    _cardCategory: 1
+    _descriptionShort: "Puzzle games are great for developing lateral thinking and
+      problem-solving skills. Platforming games are excellent for gaining faster
+      reflexes. Co-operative games foster teamwork. Strategy games encourage tactical
+      thinking and planning. All of these are useful life skills beyond the world
+      of gaming, whether you\u2019re male or female"
+    _answered: 0
+  - _stereotypeName: 'Colour: Blue'
+    _cardCategory: 1
+    _descriptionShort: " Did you know that blue was originally the color for girls?
+      It\u2019s true: Blue used to be for girls as it was seen as more \u201Cdainty,\u201D
+      while pink used to be associated with boys as it was seen as the stronger color.
+      It didn\u2019t change until the 1950s when some big advertising campaigns pushed
+      pink as a feminine color exclusively for girls."
+    _answered: 0
+  - _stereotypeName: Short Hair
+    _cardCategory: 1
+    _descriptionShort: ' just embrace the length of hair you have'
+    _answered: 0
+  - _stereotypeName: 'Job: Mechanic'
+    _cardCategory: 1
+    _descriptionShort: Whatever job you will be given, do it  with hard work and
+      dedication.
+    _answered: 0
+  - _stereotypeName: 'Job: Engenieer'
+    _cardCategory: 1
+    _descriptionShort: Whatever job you will be given, do it  with hard work and
+      dedication.
+    _answered: 0
+  - _stereotypeName: 'Job: Police Constable'
+    _cardCategory: 1
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Showing Emotions
+    _cardCategory: 1
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Colour Pink
+    _cardCategory: 2
+    _descriptionShort: " Did you know that blue was originally the color for girls?
+      It\u2019s true: Blue used to be for girls as it was seen as more \u201Cdainty,\u201D
+      while pink used to be associated with boys as it was seen as the stronger color.
+      It didn\u2019t change until the 1950s when some big advertising campaigns pushed
+      pink as a feminine color exclusively for girls."
+    _answered: 0
+  - _stereotypeName: Cooking
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Long Hair
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Makeup
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: 'Job: Hairdresser'
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Beeing feminine
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: 'Job: Teacher'
+    _cardCategory: 2
+    _descriptionShort: Whatever job you will be given, do it with hard work and dedication.
+    _answered: 0
+  - _stereotypeName: Stay at home parent
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0
+  - _stereotypeName: Wanting kids
+    _cardCategory: 2
+    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy text ever since
+      the 1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    _answered: 0

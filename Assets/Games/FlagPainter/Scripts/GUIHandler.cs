@@ -27,6 +27,10 @@ namespace FinalYear.FlagPainter {
 
         public static bool hintActive;
 
+        public Button muteBtn;
+        public Sprite muteOnSprite;
+        public Sprite muteOffSprite;
+
         #endregion
 
         #region Unity Methods
@@ -36,6 +40,8 @@ namespace FinalYear.FlagPainter {
 
         void Start() {
             UpdateGUI();
+            muteBtn.onClick.AddListener(() => OnMuteClicked());
+
         }
         #endregion
 
@@ -103,6 +109,18 @@ namespace FinalYear.FlagPainter {
             GameHandler.Instance.ResetActiveColor();
             paintBucketImage.color = GameHandler.DefaultColor;
             SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
+        }
+
+        public void OnMuteClicked() {
+            if (!SoundHandler._isMuted) {
+                SoundHandler._isMuted = true;
+                muteBtn.GetComponent<Image>().sprite = muteOnSprite;
+                Debug.LogWarning("GUIHandler.cs OnMuteClicked() SOUND MUTED!");
+            } else {
+                SoundHandler._isMuted = false;
+                muteBtn.GetComponent<Image>().sprite = muteOffSprite;
+                Debug.LogWarning("GUIHandler.cs OnMuteClicked() SOUND ON!");
+            }
         }
 
         private void OnQuitClick() {
