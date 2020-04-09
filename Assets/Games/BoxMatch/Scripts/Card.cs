@@ -14,6 +14,7 @@ namespace FinalYear.BoxMatch {
 
         #region Variables
         [Header("--Card--")]
+        public bool interactable = true;
         public bool draggingCard;
         [Space]
         [Header("Card Movement")]
@@ -24,38 +25,55 @@ namespace FinalYear.BoxMatch {
         [Header("Card Information")]
         private CardSetupInformation _cardInformation = default; // holds all card info
         public CardSetupInformation CardInformation { get => _cardInformation; set => _cardInformation = value; }
+        [Space]
+        [SerializeField] private Image _backgroundColor;
+        [SerializeField] private Image _borderColor;
+        [SerializeField] private Text _cardText = default; // display text on card
 
-        private Text cardText = default; // display text on card
         #endregion
 
         #region Unity Methods
         private void Awake() {
-            CardHandler.Instance.cardList.Add(this);
+            if (interactable) {
+                CardHandler.Instance.cardList.Add(this);
+            }
         }
 
         private void Start() {
-            StartCoroutine(LerpCard()); // start checking this card for its position, if its not at its pointer position it will lerp to it
-            cardText = GetComponentInChildren<Text>();
-            cardText.text = CardInformation.GetName;
+            if (interactable) {
+                StartCoroutine(LerpCard()); // start checking this card for its position, if its not at its pointer position it will lerp to it
+                UpdateCard();
+            }
         }
 
         private void Update() {
-            if (draggingCard) {
+            if (interactable && draggingCard) {
                 transform.position = Input.mousePosition; // position card at mouse pointer
             }
         }
         #endregion
 
+        public void UpdateCard() {
+            _backgroundColor.color = CardInformation.AssignedColors.bgrColor;
+            _borderColor.color = CardInformation.AssignedColors.borderColor;
+            _cardText.text = CardInformation.Name;
+        }
+
         public void OnPointerDown(PointerEventData eventData) {
-            GameHandler.ActiveCard = this; // set active card to this
-            draggingCard = true;
-            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
+            if (interactable) {
+                //GameHandler.ActiveCard = this; // set active card to this
+                GameHandler.ActiveCard = this; // set active card to this
+                draggingCard = true;
+                SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
+            }
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            draggingCard = false;
-            CardHandler.Instance.CheckForCorrectBox(GetEnumCardCategory());
-            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
+            if (interactable) {
+                draggingCard = false;
+                CardHandler.Instance.CheckForCorrectBox(GetEnumCardCategory());
+                SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
+            }
         }
 
         private IEnumerator LerpCard() {// lerp back to original position
@@ -74,7 +92,6 @@ namespace FinalYear.BoxMatch {
 
         public void Destroy() {
             CardInformation.Answered = true;
-            //CardHandler.unansweredCards.Remove(CardInformation);
             Destroy(_pointer.gameObject); // destroy pointer obj
             Destroy(gameObject);
         }

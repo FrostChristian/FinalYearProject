@@ -129,11 +129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b5f55b601edab4b9350faed8d6cc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   draggingCard: 0
   lerpSpeed: 10
   lerpStopDistance: 0.1
   _lerpUpdateTime: 0.3
   _pointer: {fileID: 0}
+  _backgroundColor: {fileID: 1789639984516508770}
+  _borderColor: {fileID: 4064769718150020068}
+  _cardText: {fileID: 109045126878440871}
 --- !u!210 &7978000236329505976
 SortingGroup:
   m_ObjectHideFlags: 0

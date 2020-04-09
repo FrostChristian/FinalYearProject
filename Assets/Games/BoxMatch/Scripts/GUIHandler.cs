@@ -3,6 +3,7 @@
 * christian.dennis.frost@gmail.com
 */
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,6 +22,8 @@ namespace FinalYear.BoxMatch {
         public Sprite muteOffSprite;
         [Space]
         public GameObject dialogPanel;
+        public GameObject dialogCard;
+        [HideInInspector] public CardSetupInformation _dialogCardInfo;
         public Text headerText;
         public Text stereotypeText;
         public Text questionText;
@@ -28,7 +31,12 @@ namespace FinalYear.BoxMatch {
         public Text scoreText;
         [Space]
         public GameObject winPanel;
-        public Text endScoreText;
+        public Text endText;
+
+
+
+
+        public event EventHandler OnDialogPanelOpen;
 
         private UnityAction introButtonFunc; // holds funtions for Intro panel button click
         #endregion
@@ -43,6 +51,7 @@ namespace FinalYear.BoxMatch {
             muteBtn.onClick.AddListener(() => OnMuteClicked()); // setup mutebtn
             dialogPanel.GetComponentInChildren<Button>().onClick.AddListener(() => ToggleDialogPanel()); // setup Dialog panel btn
             UpdateGUI(); // set score in GUI initially
+
         }
         #endregion
 
@@ -58,18 +67,24 @@ namespace FinalYear.BoxMatch {
                 dialogPanel.SetActive(true);
                 animator.SetBool("Open", !isOpen);
             } else {
+                OnDialogPanelOpen?.Invoke(this, EventArgs.Empty); // fire event for card animation
                 animator.SetBool("Open", !isOpen);
                 yield return new WaitForSeconds(.5f);
                 dialogPanel.SetActive(false);
+                yield return new WaitForSeconds(1.5f);
+                GameHandler.Instance.CheckEndGame();
             }
         }
 
         public void ShowIntroPanel() {
             // setting up text
-            headerText.text = " - Match the Cards! - ";
+            headerText.text = "   - Match the Cards! - ";
             stereotypeText.text = "";
-            questionText.text = "Try and match the cards in to the box that you think they belong to!";
-            explanationText.text = "Have Fun!";
+            questionText.text = "";
+            explanationText.text = "Try and match the cards in to the box that you think they belong to! \n\n" + "Have Fun!";
+
+            // hide card for intro
+            dialogCard.SetActive(false);
 
             // setting up dialog panel button 
             introButtonFunc += CardHandler.Instance.SpawnCards; // add this to the delegate
@@ -80,25 +95,32 @@ namespace FinalYear.BoxMatch {
         }
 
         public void ShowDialogPanel() {
-            var card = GameHandler.ActiveCard.CardInformation.GetName;
-            var box = GameHandler.ChoosenCardBox.GetStringBoxCategory;
+            CardSetupInformation card = GameHandler.ActiveCard.CardInformation;
+            MatchCategory box = GameHandler.ChoosenCardBox.GetStringBoxCategory;
+           
+            // setting up text
+            headerText.text = "Let's think about it!";
+            stereotypeText.text = ""; //card.Name;
+            questionText.text = ""; //"Does >" + card.Name + "< really fit in to box >" + box + "< ?";
+            explanationText.text = "Info: " + card.GetDescriptionShort;
 
-            headerText.text = "Let's think about that!";
-            stereotypeText.text = card;
-            questionText.text = "Does >" + card + "< really fit in to box >" + box + "< ?";
-            explanationText.text = "Info: " + GameHandler.ActiveCard.CardInformation.GetDescriptionShort;
-
+            ShowCardInfoInDialogPanel(card);
             ToggleDialogPanel();
         }
 
+        private void ShowCardInfoInDialogPanel(CardSetupInformation card) {
+            dialogCard.GetComponent<Card>().CardInformation = card; // set CardSetupInformation for dialogCard to the one from CardSetupInformation; 
+            dialogCard.GetComponent<Card>().UpdateCard(); // update the card in the dialogPanel
+            dialogCard.SetActive(true); // show the card
+        }
+
         public void ShowWinPanel() {
-            endScoreText.text = "You have a score of " + GameHandler.Score.ToString() + "! Amazing!";
+            endText.text = "Play Again?";
             winPanel.SetActive(true);
         }
 
         public void UpdateGUI() {
-            scoreText.text = "Score:\n" + GameHandler.Score.ToString();
-            if (introButtonFunc != null) { // if Intro Action is still set
+            if (introButtonFunc != null) { // if introButtonFunc Action is still active
                 GameHandler.Instance._intro = false; // set to true for GH update win check
                 dialogPanel.GetComponentInChildren<Button>().onClick.RemoveListener(introButtonFunc); // remove intro button func
             }
@@ -114,7 +136,6 @@ namespace FinalYear.BoxMatch {
         }
 
         public void OnRestartClicked() {
-            GameHandler.ResetScore();
             CardHandler.Instance.SpawnCards();
             UpdateGUI();
             winPanel.SetActive(false);

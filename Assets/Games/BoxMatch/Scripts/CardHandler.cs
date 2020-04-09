@@ -55,40 +55,34 @@ namespace FinalYear.BoxMatch {
             for (int i = 0; i < unansweredCards.Count; i++) {   // for every cards in settings
                 GameObject tempPointer = Instantiate(pointer, cardPointerStash.transform); // create pointer for each card
                 Card tempCard = Instantiate(cardTemplate, cardStash.transform); // create card at pointer transform
-                tempCard._pointer = tempPointer.transform; // assign this pointer to card for later use (destroying the pointer)
-                tempCard.CardInformation = unansweredCards[i];// assign Scriptable Object Info    
 
                 /// Colors (Colors are choosen randomly for each card)
-                Image tempCardBorder = tempCard.gameObject.transform.Find("Card_Border").GetComponent<Image>(); // ref to Card Border Img
-                Image tempCardBgr = tempCard.gameObject.transform.Find("Card_Bgr").GetComponent<Image>(); // ref to Card bgr Img
-
                 ColorPair randColorPair = tempColorList[Random.Range(0, tempColorList.Count)]; // get a random Color from list
                 tempColorList.Remove(randColorPair); // remove this color from the list so that no color appears twice
+                unansweredCards[i].AssignedColors = randColorPair; // assign the colorpair to the CardSetupInformation
 
-                tempCardBorder.color = randColorPair.borderColor; // assign the color to the img
-                tempCardBgr.color = randColorPair.bgrColor; // assign the color to the img
-
+                tempCard._pointer = tempPointer.transform; // assign pointer to card for later use (destroying the pointer)
+                tempCard.CardInformation = unansweredCards[i];// assign CardSetupInformation to card
             }
 
             SoundHandler.PlaySound(SoundHandler.Sounds.ShuffleCards);
         }
 
         private void StoreUnansweredCards() {
-            for (int i = 0; i < _cardSettings.TotalCards; i++) { // add to ansered card list
-                if (!answeredCards.Contains(_cardSettings.GetCardByIndex(i)) && _cardSettings.GetCardByIndex(i).Answered) { // if card has been answeerd and is not jet in the list of answered cards
-                    answeredCards.Add(_cardSettings.GetCardByIndex(i));
+            for (int i = 0; i < _cardSettings.TotalCards; i++) { // look for answered cards in all cards and add to answered card list
+                if (!answeredCards.Contains(_cardSettings.GetCardByIndex(i)) && _cardSettings.GetCardByIndex(i).Answered) { // if card has been answeerd and is not yet in the list of answered cards
+                    answeredCards.Add(_cardSettings.GetCardByIndex(i)); // add it
                 }
             }
 
-            if (answeredCards.Count == _cardSettings.TotalCards) { // if all cards are in answered list UNMARK CARDS
+            if (answeredCards.Count == _cardSettings.TotalCards) { // if all cards are in answered list, UNMARK ALL CARDS
                 _cardSettings.MarkAllCardsUnanswered();
                 answeredCards.Clear(); // clear list for next lvl
             }
 
             /// list 10 unanswered randomCards from cardSettings ScriptableObj
-            /// get rid of all answered cards in unclist
+            /// get rid of all answered cards in the unanswered cards list
             for (int i = 0; i < _cardSettings.TotalCards; i++) {
-
                 if (_cardSettings.GetCardByIndex(i).Answered) { // if card was answered
                     if (unansweredCards.Contains(_cardSettings.GetCardByIndex(i))) { // if its in the unansweerdCard list remove it
                         unansweredCards.Remove(_cardSettings.GetCardByIndex(i));
