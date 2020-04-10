@@ -17,6 +17,7 @@ namespace FinalYear.BoxMatch {
         private static GUIHandler _instance;
         public static GUIHandler Instance { get => _instance; }
 
+        [Header("Assign here!")]
         public Button muteBtn;
         public Sprite muteOnSprite;
         public Sprite muteOffSprite;
@@ -24,6 +25,7 @@ namespace FinalYear.BoxMatch {
         public GameObject dialogPanel;
         public GameObject dialogCard;
         [HideInInspector] public CardSetupInformation _dialogCardInfo;
+        [Space]
         public Text headerText;
         public Text stereotypeText;
         public Text questionText;
@@ -33,11 +35,7 @@ namespace FinalYear.BoxMatch {
         public GameObject winPanel;
         public Text endText;
 
-
-
-
         public event EventHandler OnDialogPanelOpen;
-
         private UnityAction introButtonFunc; // holds funtions for Intro panel button click
         #endregion
 
@@ -71,14 +69,13 @@ namespace FinalYear.BoxMatch {
                 animator.SetBool("Open", !isOpen);
                 yield return new WaitForSeconds(.5f);
                 dialogPanel.SetActive(false);
-                yield return new WaitForSeconds(1.5f);
-                GameHandler.Instance.CheckEndGame();
+
             }
         }
 
         public void ShowIntroPanel() {
             // setting up text
-            headerText.text = "   - Match the Cards! - ";
+            headerText.text = "     - Match the Cards! - ";
             stereotypeText.text = "";
             questionText.text = "";
             explanationText.text = "Try and match the cards in to the box that you think they belong to! \n\n" + "Have Fun!";

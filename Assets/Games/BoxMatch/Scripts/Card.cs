@@ -26,10 +26,9 @@ namespace FinalYear.BoxMatch {
         private CardSetupInformation _cardInformation = default; // holds all card info
         public CardSetupInformation CardInformation { get => _cardInformation; set => _cardInformation = value; }
         [Space]
-        [SerializeField] private Image _backgroundColor;
-        [SerializeField] private Image _borderColor;
+        [SerializeField] private Image _backgroundColor = default;
+        [SerializeField] private Image _borderColor = default;
         [SerializeField] private Text _cardText = default; // display text on card
-
         #endregion
 
         #region Unity Methods
@@ -61,7 +60,6 @@ namespace FinalYear.BoxMatch {
 
         public void OnPointerDown(PointerEventData eventData) {
             if (interactable) {
-                //GameHandler.ActiveCard = this; // set active card to this
                 GameHandler.ActiveCard = this; // set active card to this
                 draggingCard = true;
                 SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
@@ -79,7 +77,6 @@ namespace FinalYear.BoxMatch {
         private IEnumerator LerpCard() {// lerp back to original position
             while (Vector3.Distance(transform.position, _pointer.position) > lerpStopDistance && !draggingCard) { // dist check
                 transform.position = Vector3.Lerp(transform.position, _pointer.position, lerpSpeed * Time.deltaTime); //lerp
-                //Debug.Log(Vector3.Distance(transform.position, _pointer.position) + "Lerping");
                 yield return null;
             }
             yield return new WaitForSeconds(UnityEngine.Random.Range(_lerpUpdateTime, _lerpUpdateTime + .1f)); // wait before lerping again!
@@ -92,6 +89,7 @@ namespace FinalYear.BoxMatch {
 
         public void Destroy() {
             CardInformation.Answered = true;
+            CardHandler.Instance.RemoveCardFromUnanswered(CardInformation);
             Destroy(_pointer.gameObject); // destroy pointer obj
             Destroy(gameObject);
         }

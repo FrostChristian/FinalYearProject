@@ -3,9 +3,7 @@
 * christian.dennis.frost@gmail.com
 */
 
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace FinalYear.BoxMatch {
 

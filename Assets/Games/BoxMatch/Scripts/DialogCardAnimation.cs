@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿/*
+* Copyright (c) Christian Frost
+* christian.dennis.frost@gmail.com
+*/
+
+using System;
 using UnityEngine;
 
 namespace FinalYear.BoxMatch {
     public class DialogCardAnimation : MonoBehaviour {
 
+        #region Variables
         private static DialogCardAnimation _instance;
         public static DialogCardAnimation Instance { get => _instance; set => _instance = value; }
 
@@ -14,6 +18,8 @@ namespace FinalYear.BoxMatch {
         public RuntimeAnimatorController animController; // assign in inspector
 
         public event EventHandler OnCardAnimFinished;
+
+        #endregion Variables
 
         private void Awake() {
             if (Instance != null) {
@@ -30,13 +36,12 @@ namespace FinalYear.BoxMatch {
         public void AnimateCard(object sender, EventArgs e) {
             //Duplicate card in position twitch and put in list
             for (int i = 0; i < animationClips.Length; i++) {
-            var tempDialog = Instantiate(GUIHandler.Instance.dialogCard, gameObject.transform);
-            Animator anim = tempDialog.AddComponent<Animator>();
-            anim.runtimeAnimatorController = animController;
-            anim.SetTrigger(animationClips[i]);
-            Destroy(tempDialog, 2f);
+                var tempDialog = Instantiate(GUIHandler.Instance.dialogCard, gameObject.transform);
+                Animator anim = tempDialog.AddComponent<Animator>();
+                anim.runtimeAnimatorController = animController;
+                anim.SetTrigger(animationClips[i]);
+                Destroy(tempDialog, 2f);
             }
-
             GUIHandler.Instance.dialogCard.SetActive(false);
         }
     }

@@ -3,6 +3,7 @@
 * christian.dennis.frost@gmail.com
 */
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,7 @@ namespace FinalYear.BoxMatch {
         private static CardBox _choosenCardBox = default;
         public static CardBox ChoosenCardBox { get => _choosenCardBox; set => _choosenCardBox = value; }
 
-        public static int cardLimit = 10;
+        public int cardLimit = 2;
 
         public bool _intro = true;
 
@@ -48,28 +49,35 @@ namespace FinalYear.BoxMatch {
             GUIHandler.Instance.ShowIntroPanel();
             SoundHandler.PlayBackgroundSound(SoundHandler.Sounds.Background);
         }
+        #endregion
 
-        public void CheckEndGame() {
+        public void StartCheckGame() {
+            StartCoroutine(CheckEndGame());
+        }
+
+        private IEnumerator CheckEndGame() {  // assigned to DialogPanel Button
+            yield return new WaitForSeconds(0.5f);
             if (CardHandler.Instance.cardList.Count == 0 && !_intro) {
                 GUIHandler.Instance.ShowWinPanel();
                 SoundHandler.PlaySound(SoundHandler.Sounds.WinSoundOne);
             }
         }
-        #endregion
 
         public void OnRightCardBoxChoosen() {
             GUIHandler.Instance.UpdateGUI();
             CardHandler.Instance.cardList.Remove(ActiveCard);
             SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
             ActiveCard.Destroy();
+            
+            StartCheckGame();
         }
 
         public void OnWrongCardBoxChoosen() {
-            // delete pointer in box
             GUIHandler.Instance.ShowDialogPanel();
             CardHandler.Instance.cardList.Remove(ActiveCard);
             SoundHandler.PlaySound(SoundHandler.Sounds.ShuffleCards);
             ActiveCard.Destroy();
+
         }
     }
 }
