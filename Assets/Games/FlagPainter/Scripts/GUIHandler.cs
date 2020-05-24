@@ -3,6 +3,7 @@
 * christian.dennis.frost@gmail.com
 */
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,8 @@ namespace FinalYear.FlagPainter {
         public Button muteBtn;
         public Sprite muteOnSprite;
         public Sprite muteOffSprite;
-
+        [Space]
+        public GameObject dialogPanel;
         #endregion
 
         #region Unity Methods
@@ -39,11 +41,33 @@ namespace FinalYear.FlagPainter {
         }
 
         void Start() {
-            UpdateGUI();
+            //UpdateGUI();
             muteBtn.onClick.AddListener(() => OnMuteClicked());
-
+            ToggleDialogPanel();
         }
         #endregion
+
+        public void ToggleDialogPanel() {
+            StartCoroutine(DialogPanelAnimator());
+        }
+
+        public IEnumerator DialogPanelAnimator() {
+            yield return new WaitForSeconds(.1f);
+            Animator animator = dialogPanel.GetComponent<Animator>();
+            bool isOpen = animator.GetBool("Open");
+
+            if (!dialogPanel.activeSelf) { // if panel is not active activate it and play ani
+                dialogPanel.SetActive(true);
+                animator.SetBool("Open", !isOpen);
+            } else {
+                SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
+                animator.SetBool("Open", !isOpen);
+                yield return new WaitForSeconds(.5f);
+                dialogPanel.SetActive(false);
+                GameHandler._isIntro = false;
+                FlagHandler.Instance.SpawnFlag(0); // start the first flag
+            }
+        }
 
         private void UpdateGUI() {
             hintActive = false;
@@ -63,7 +87,7 @@ namespace FinalYear.FlagPainter {
         private void SpawnFlagColorSplashButtons() {
             ClearColorSplashButtons();
             for (int i = 0; i < _currentFlag.FlagMatches.Count; i++) {
-                GameObject go = Instantiate(colorSplashPrefab[Random.Range(0, colorSplashPrefab.Count)], _colorSpawns[i].transform);
+                GameObject go = Instantiate(colorSplashPrefab[UnityEngine.Random.Range(0, colorSplashPrefab.Count)], _colorSpawns[i].transform);
                 go.GetComponentInChildren<ColorButton>().myColor = _currentFlag.FlagMatches[i].targetColor;
                 _colorSplashesInPanel.Add(go.gameObject);
             }
@@ -112,14 +136,14 @@ namespace FinalYear.FlagPainter {
         }
 
         public void OnMuteClicked() {
-            if (!SoundHandler._isMuted) {
-                SoundHandler._isMuted = true;
-                muteBtn.GetComponent<Image>().sprite = muteOnSprite;
-                Debug.LogWarning("GUIHandler.cs OnMuteClicked() SOUND MUTED!");
-            } else {
-                SoundHandler._isMuted = false;
+
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
+            SoundHandler.ToggleAudio();
+
+            if (!SoundHandler._isMuted) { // switch btn sprites
                 muteBtn.GetComponent<Image>().sprite = muteOffSprite;
-                Debug.LogWarning("GUIHandler.cs OnMuteClicked() SOUND ON!");
+            } else {
+                muteBtn.GetComponent<Image>().sprite = muteOnSprite;
             }
         }
 

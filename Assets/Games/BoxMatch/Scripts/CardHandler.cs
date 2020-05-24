@@ -16,7 +16,7 @@ namespace FinalYear.BoxMatch {
         private static CardHandler _instance;
         public static CardHandler Instance { get => _instance; set => _instance = value; }
 
-        [HideInInspector] 
+        [HideInInspector]
         public List<Card> cardList = new List<Card>(); // holds cards so actual cardList wont get messed up
 
         public Transform cardStash = default;
@@ -41,11 +41,14 @@ namespace FinalYear.BoxMatch {
                 _instance = this;
             }
 
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Debug.LogWarning(Screen.orientation);
+
             Init();
 
         }
         #endregion
-        
+
         private void Init() {
             if (cardColors.Length <= 0) {
                 Debug.LogWarning("CardHandler.cs, Array of cardColors needs to be assigned in Inspector!");
@@ -61,7 +64,9 @@ namespace FinalYear.BoxMatch {
             }
         }
 
-        public void SpawnCards() {           
+        public void SpawnCards() {
+
+            ReloadCardsIfNecessery();
 
             List<ColorPair> tempColorList = new List<ColorPair>(cardColors); // create a list from color array to work with
 
@@ -79,6 +84,13 @@ namespace FinalYear.BoxMatch {
             }
 
             SoundHandler.PlaySound(SoundHandler.Sounds.ShuffleCards);
+        }
+
+        private void ReloadCardsIfNecessery() {
+            if (unansweredCards.Count <= 0) {
+                _cardSettings.MarkAllCardsUnanswered();
+                LoadCardsFromSO();
+            }
         }
 
         private int GetCardLimit() {
@@ -99,11 +111,14 @@ namespace FinalYear.BoxMatch {
             for (int i = 0; i < _cardSettings.TotalCards; i++) {
                 if (!_cardSettings.GetCardByIndex(i).Answered && !unansweredCards.Contains(_cardSettings.GetCardByIndex(i))) {  // if card unanswerded add to list
                     unansweredCards.Add(_cardSettings.GetCardByIndex(i));
-                } else if (_cardSettings.GetCardByIndex(i).Answered && !answeredCards.Contains(_cardSettings.GetCardByIndex(i))) {  // if answered add to ansered list
+                } 
+                if (_cardSettings.GetCardByIndex(i).Answered && !answeredCards.Contains(_cardSettings.GetCardByIndex(i))) {  // if answered add to ansered list
                     answeredCards.Add(_cardSettings.GetCardByIndex(i)); // add unaswered ones
+                } else {
+                    answeredCards.Remove(_cardSettings.GetCardByIndex(i)); // remve unaswered ones
                 }
             }
-            ExtentionMethods.Shuffle(unansweredCards); // shuffel cards for random display
+            ExtentionMethods.ShuffleList(unansweredCards); // shuffel cards for random display
         }
 
         public void CheckForCorrectBox(MatchCategory cardCategory) {
@@ -120,11 +135,9 @@ namespace FinalYear.BoxMatch {
                         if (cb.GetStringBoxCategory == cardCategory) { // check for category
                             // On right Box found!
                             GameHandler.Instance.OnRightCardBoxChoosen();
-                            Debug.Log("Found the right Box! " + cb.name);
                         } else {
                             // On wrong Box found!
                             GameHandler.Instance.OnWrongCardBoxChoosen();
-                            Debug.Log("Found the wrong Box! " + cb.name);
                         }
                     }
                 }

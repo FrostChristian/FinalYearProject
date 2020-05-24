@@ -29,10 +29,6 @@ namespace FinalYear.FlagPainter {
         void OnThisButtonClick() {
             GameHandler.Instance.UpdadeActiveColor(myColor);
             GUIHandler.Instance.paintBucketImage.color = myColor;
-            //if (GameHandler.CompareColors(myColor, Color.black)) { // useless function atm
-            //    Debug.Log("Im black");
-            //    GUIHandler.Instance.paintBucketHighlightImage.color = Color.white;
-            //}
             SoundHandler.PlayRandomSound("ColorFill");
         }
     }

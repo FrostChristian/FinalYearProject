@@ -20,12 +20,10 @@ namespace FinalYear {
 
                 if (levelLoader != null) { // load with progress bar if we find a LevelLoad object
                     levelLoader.LoadLevelAsync(levelIndex);
-                    Debug.Log("Load Level " + levelIndex);
-                } else {  // otherwise load immediately
+                } else { // otherwise load immediately
                     SceneManager.LoadScene(levelIndex);
                 }
             } else {
-                Debug.Log("LEVELLOADER LoadLevel Error: invalid scene specified!");
             }
         }
 

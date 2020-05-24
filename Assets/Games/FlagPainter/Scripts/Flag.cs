@@ -42,7 +42,6 @@ namespace FinalYear.FlagPainter {
             }
             if (iter == FlagMatches.Count) { //if iter is same as all flag parts the flag is filled in
                 isFlagCompletelyFilled = true;
-                Debug.Log("All sprites are the right color!");
             } else {
                 isFlagCompletelyFilled = false;
             }
@@ -51,7 +50,6 @@ namespace FinalYear.FlagPainter {
         private IEnumerator TICK() { // enum for performance
             while (true) { // always check loop!
                 CheckIfFlagFilled();
-                //Debug.Log("TICK FLAG");
                 yield return new WaitForSeconds(.1f);
             }
         }

@@ -9,10 +9,10 @@ using System.Security.Cryptography;
 
 namespace FinalYear.BoxMatch {
 
-    public static class ExtentionMethods {
+    public static class ExtentionMethods { // used for shuffeling generic list
 
-        public static void Shuffle<T>(this IList<T> list) {
-            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+        public static void ShuffleList<T>(this IList<T> list) {
+            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider(); // using .Cryptography to increase inconsistency
             int n = list.Count;
             while (n > 1) {
                 byte[] box = new byte[1];

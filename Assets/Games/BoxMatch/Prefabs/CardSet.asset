@@ -16,109 +16,95 @@ MonoBehaviour:
   - _stereotypeName: Sports
     _cardCategory: 1
     _descriptionShort: Sport participation has been regarded as a masculine activity.
-    _answered: 0
+      Women's sports, both amateur and professional, have existed throughout the
+      world for centuries in all varieties of sports.
+    _answered: 1
   - _stereotypeName: Video Games
     _cardCategory: 1
     _descriptionShort: "Puzzle games are great for developing lateral thinking and
       problem-solving skills. Platforming games are excellent for gaining faster
       reflexes. Co-operative games foster teamwork. Strategy games encourage tactical
       thinking and planning. All of these are useful life skills beyond the world
-      of gaming, whether you\u2019re male or female"
-    _answered: 0
+      of gaming, whether you\u2019re male or female!"
+    _answered: 1
   - _stereotypeName: 'Colour: Blue'
     _cardCategory: 1
-    _descriptionShort: " Did you know that blue was originally the color for girls?
+    _descriptionShort: "Did you know that blue was originally the colour for girls?
       It\u2019s true: Blue used to be for girls as it was seen as more \u201Cdainty,\u201D
-      while pink used to be associated with boys as it was seen as the stronger color.
-      It didn\u2019t change until the 1950s when some big advertising campaigns pushed
-      pink as a feminine color exclusively for girls."
+      while pink used to be associated with boys as it was seen as the stronger colour.
+      It didn\u2019t change until the 1950s when big advertising campaigns pushed
+      pink as a feminine colour exclusively for girls. "
     _answered: 0
   - _stereotypeName: Short Hair
     _cardCategory: 1
-    _descriptionShort: ' just embrace the length of hair you have'
-    _answered: 0
+    _descriptionShort: Just embrace the length of hair you have. Short hair is not
+      only popular with men, shorter hair can be an important part of a person's
+      lifestyle.
+    _answered: 1
   - _stereotypeName: 'Job: Mechanic'
     _cardCategory: 1
-    _descriptionShort: Whatever job you will be given, do it  with hard work and
-      dedication.
+    _descriptionShort: Whatever job you choose to pursue, always give it your best
+      shot.
     _answered: 0
-  - _stereotypeName: 'Job: Engenieer'
+  - _stereotypeName: 'Job: Engineer '
     _cardCategory: 1
-    _descriptionShort: Whatever job you will be given, do it  with hard work and
-      dedication.
-    _answered: 0
+    _descriptionShort: Whatever job you choose to pursue, always give it your best
+      shot.
+    _answered: 1
   - _stereotypeName: 'Job: Police Constable'
     _cardCategory: 1
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
+    _descriptionShort: 'Woman were part of the British police force since 1883. Although
+      more men are employed as police officers the number of women employed are steadily
+      increasing. Whatever job you choose to pursue, always give it your best shot. '
+    _answered: 1
   - _stereotypeName: Showing Emotions
     _cardCategory: 1
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
+    _descriptionShort: It is only natural to show emotions. Everyone will feel happy,
+      excited, angry or sad from time to time.
+    _answered: 1
   - _stereotypeName: Colour Pink
     _cardCategory: 2
-    _descriptionShort: " Did you know that blue was originally the color for girls?
-      It\u2019s true: Blue used to be for girls as it was seen as more \u201Cdainty,\u201D
-      while pink used to be associated with boys as it was seen as the stronger color.
-      It didn\u2019t change until the 1950s when some big advertising campaigns pushed
-      pink as a feminine color exclusively for girls."
-    _answered: 0
+    _descriptionShort: "Did you know that blue was originally the colour for girls?
+      Blue used to be for girls as it was seen as more \u201Cdainty,\u201D while
+      pink used to be associated with boys as it was seen as the stronger colour.
+      It didn\u2019t change until big advertising campaigns pushed pink as a colour
+      exclusively for girls."
+    _answered: 1
   - _stereotypeName: Cooking
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
+    _descriptionShort: No matter the gender, everyone can cook a tasty meal.
+    _answered: 1
   - _stereotypeName: Long Hair
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
+    _descriptionShort: "Just embrace the length of hair you have. Long hair is not
+      only popular with women, longer hair can be an important part of a person\u2019s
+      lifestyle."
+    _answered: 1
   - _stereotypeName: Makeup
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
+    _descriptionShort: Although the beauty industry has been largely dominated by
+      women, everyone has the right to embrace makeup, including males who love makeup.
     _answered: 0
   - _stereotypeName: 'Job: Hairdresser'
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
-  - _stereotypeName: Beeing feminine
-    _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
+    _descriptionShort: "Until the late 1970s hairdressing was considered a women\u2019s
+      job. Men who wanted to pick up this occupation were faced with prejudice. Since
+      the world has become more open to male hairdressers this is no longer true,
+      only the stereotype remains. Whatever job you choose to pursue, always give
+      it your best shot. "
     _answered: 0
   - _stereotypeName: 'Job: Teacher'
     _cardCategory: 2
-    _descriptionShort: Whatever job you will be given, do it with hard work and dedication.
+    _descriptionShort: Whatever job you choose to pursue, always give it your best
+      shot.
     _answered: 0
   - _stereotypeName: Stay at home parent
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
-    _answered: 0
+    _descriptionShort: 'A stay at home parent is usually the main caregiver of the
+      child or children. Mothers are usually perceived in that role but as families
+      have evolved the role of being a stay at home dad has become more common.  '
+    _answered: 1
   - _stereotypeName: Wanting kids
     _cardCategory: 2
-    _descriptionShort: Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text ever since
-      the 1500s, when an unknown printer took a galley of type and scrambled it to
-      make a type specimen book.
+    _descriptionShort: No matter the gender, the decision to have children is personal.
     _answered: 0

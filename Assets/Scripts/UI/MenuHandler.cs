@@ -61,7 +61,6 @@ namespace FinalYear {
 
         public void OpenMenu(Menu menuInstance) {
             if (menuInstance == null) {
-                Debug.Log("MENUMANAGER OpenMenu ERROR: invalid menu");
                 return;
             }
 
@@ -76,7 +75,6 @@ namespace FinalYear {
 
         public void CloseMenu() {
             if (_menuStack.Count == 0) {
-                Debug.LogWarning("MENUMANAGER CloseMenu ERROR: No menus in stack!");
                 return;
             }
 

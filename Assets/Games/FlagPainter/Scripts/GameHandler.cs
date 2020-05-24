@@ -3,9 +3,7 @@
 * christian.dennis.frost@gmail.com
 */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +25,7 @@ namespace FinalYear.FlagPainter {
         public int Score { get => _score; }
 
         private bool _isTouchInputActive; // checks if user currently provides input
+        public static bool _isIntro = true; // checks if user currently provides input
 
         [Header("Sound")]
         public GameAudioClip[] gameAudioClips; // stores all audio clips; assigned in inspector!
@@ -45,19 +44,23 @@ namespace FinalYear.FlagPainter {
             } else {
                 _instance = this;
             }
+            Screen.orientation = ScreenOrientation.Landscape;
             ResetActiveColor(); // set active to default color
-
         }
-        private void Start() {
 
-            if (SceneManager.GetActiveScene().name == "FlagPainter") {
-                FlagPainterMenu.Open();
-                Debug.Log("GameManager Awake(): Entered Game through FlagPainter");
-            }
+        private void Start() {
+            SoundHandler.PlayBackgroundSound(SoundHandler.Sounds.Background);
+           // if (SceneManager.GetActiveScene().name == "FlagPainter") {
+           //     FlagPainterMenu.Open();
+           // }
         }
 
         private void Update() {
-            HandleUserInput(); // listen for input
+            if (_isIntro) { // if dialog panel is open dont register clicks
+                return;
+            } else {
+                HandleUserInput(); // listen for input
+            }
         }
         #endregion Unity Methods
 
@@ -122,13 +125,12 @@ namespace FinalYear.FlagPainter {
 
             if (Input.GetAxisRaw("Fire1") > 0) {
                 //call hold event here
-                Debug.Log("IM HOLDING");
             }
         }
 
         private void OnUserClick() {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Drawing"));  // Input.GetTouch(0).position == for the app
-            if (hit.collider != null) { // if we hit something
+            if (hit.collider != null && hit.collider.gameObject.tag != "wrapper") { // if we hit something
                 SetSpriteRendererColor(hit.collider.gameObject.GetComponent<SpriteRenderer>(), _activeColor); // get the renderer and change its color
                 SoundHandler.PlayRandomSound("ColorFill"); // Play sound
                 InstantiateParticleSystem(_activeColor, paintEffectPrefabPS, hit.collider.gameObject.transform.parent, hit.point, 0f);
@@ -139,7 +141,6 @@ namespace FinalYear.FlagPainter {
         public IEnumerator HandleOnFlagComplete() { // WInning!
             yield return new WaitForSeconds(1f);
             while (!Flag.isFlagCompletelyFilled) { // always check loop!
-                //Debug.Log("TICK GH");
                 yield return new WaitForSeconds(.1f);
             }
             AddScore(50);
@@ -155,11 +156,11 @@ namespace FinalYear.FlagPainter {
         private void InstantiateParticleSystem(Color color, GameObject prefab, Transform spwanTransform, Vector3 position, float xRota) {
             var go = Instantiate(prefab, position, Quaternion.Euler(xRota, 0f, 0f), spwanTransform);
             foreach (ParticleSystem ptS in go.GetComponentsInChildren<ParticleSystem>()) {
+                ptS.GetComponent<ParticleSystemRenderer>().sortingLayerName = "Foreground"; // set particle system to max sorting order
                 ParticleSystem.MainModule main = ptS.main; // temp var for the PS.main
                 main.startColor = ModifyColorRGB(color, 0.2f); // change Color here and modify it so that its a bit different to active color
             };
             Destroy(go, 1.5f);
         }
-
     }
 }

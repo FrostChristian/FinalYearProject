@@ -1,5 +1,48 @@
 # Final Year Project (Positive Identities)
-From Group Project
+From Group Project LGBT APP 2020
+
+# v1.0.0:
+
+Project:
+ - Cleaned up code
+ - Removed all unused files and assets
+ - Bugfixes
+
+Flagpainter:
+ - Removed flag: Polysexual
+ - Changed Animations slightly
+ - Added dialog window with animation
+ - Added background music
+ - Added new interface sounds
+ - Fixed sortinglayer issues in Unity
+
+BoxMatch Game:
+ - Changed interface text
+ - Added new button textures
+ - Fixed sortinglayer issues in Unity
+
+# v0.7.2:
+
+Updated from Unity 2019.3.3f1 to Unity 2019.3.9f1
+
+Box Match Game:
+
+Added:
+- Randomized card spawn
+- Box highlight with rotation
+- Cloud textures
+- Improved several textures
+
+- Bugfixes and refactoring
+
+# v0.7.1:
+
+Box Match Game:
+
+- Removed score
+- Added animation for card going into both boxes
+
+- Refactoring
 
 # v0.7.0:
 
@@ -20,17 +63,17 @@ Scripting:
  - Used cards will be marked as answered and not be displayed again until reloading the scene  
 
 UI:
- - Animated Dialog Window
- - Highlighting boxes on Dragging over
+ - Animated dialog window
+ - Highlighting boxes on dragging over
  - Added Mute Button x 512px
 
 Textures:
- - Added Sprites in Cartoon Art style
+ - Added Sprites in cartoon art style
 
 > Flag Painter Game:
 
 UI:
- - Added Mute Button
+ - Added mute button
 
 Changed Flags:
  - Aromantic to Asexual
@@ -46,7 +89,7 @@ Box Match Game:
 
 # v0.5.1:
 
-Project now using Semantic Versioning:
+Project now using semantic versioning:
 old v0.10 == new v0.5.0;
 
 Flag Painter Game:
@@ -77,7 +120,7 @@ Added Menu Manager with
 Added Game:
 Box Match Game!
 
- - Drag the Cards into the right box
+ - Drag the cards into the right box
  - Correct box adds +50 Score
  - Incorrect box opens explanation video
 
@@ -101,7 +144,7 @@ Particle Effects
 
 HintsSystem
 - Toggle hints
-- Reduce Score while using hint
+- Reduce score while using hint
 
 - Canvas Camera View
 

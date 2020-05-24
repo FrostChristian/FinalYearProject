@@ -39,6 +39,8 @@ namespace FinalYear.BoxMatch {
                 _instance = this;
             }
 
+            Screen.orientation = ScreenOrientation.Landscape;
+
             if (SceneManager.GetActiveScene().name == "BoxMatch") {
                 BoxMatchMenu.Open();
                 Debug.Log("GameManager Awake(): Entered Game through BoxMatch");
@@ -77,7 +79,6 @@ namespace FinalYear.BoxMatch {
             CardHandler.Instance.cardList.Remove(ActiveCard);
             SoundHandler.PlaySound(SoundHandler.Sounds.ShuffleCards);
             ActiveCard.Destroy();
-
         }
     }
 }

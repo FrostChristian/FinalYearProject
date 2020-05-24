@@ -3,7 +3,6 @@
 * christian.dennis.frost@gmail.com
 */
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,7 +71,6 @@ namespace FinalYear.BoxMatch {
                     return gameAudioClip.audioClip;
                 }
             }
-            Debug.LogError("Sound " + sound + " not found!");
             return null;
         }
 
@@ -88,10 +86,7 @@ namespace FinalYear.BoxMatch {
             if (tempList.Count != 0) { // if temp list is not empty
                 return tempList[UnityEngine.Random.Range(0, tempList.Count)]; // get random value from list
             }
-
-            Debug.LogError("Sound " + soundName + " not found!");
             return null;
         }
-
     }
 }

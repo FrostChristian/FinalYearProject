@@ -1,8 +1,7 @@
 ﻿using FinalYear.FlagPainter;
 using System.Collections;
 using UnityEngine;
-
-
+using UnityEngine.SceneManagement;
 
 namespace FinalYear {
 
@@ -18,9 +17,10 @@ namespace FinalYear {
 
 
         public override void OnBackPressed() {
-            Debug.Log("Back");
             SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
-            LevelLoader.LoadLevel(1);
+            //LevelLoader.LoadLevel(1);
+            SceneManager.LoadScene(1);
+            Screen.orientation = ScreenOrientation.Portrait;
             MainMenu.Open();
         }
     }

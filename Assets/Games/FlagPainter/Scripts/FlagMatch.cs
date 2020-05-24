@@ -50,7 +50,6 @@ namespace FinalYear.FlagPainter {
                 isFilled = false;
                 return;
             }
-            //Debug.Log("Color of " + _rend.gameObject.name + " is filled! \n" + "Color F: " + _rend.color + "\n" + "Color T: " + targetColor);
             isFilled = true;
         }
 
@@ -77,7 +76,6 @@ namespace FinalYear.FlagPainter {
         private IEnumerator TICK() { // enum for performance
             while (true) { // always check loop!
                 CheckIfColorFilled();
-                //Debug.Log("TICK PART");
                 yield return new WaitForSeconds(.1f);
             }
         }

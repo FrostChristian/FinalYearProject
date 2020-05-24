@@ -32,22 +32,20 @@ namespace FinalYear.FlagPainter {
             } else {
                 _instance = this;
             }
-            SpawnFlag(_currentFlagIndex);
+            //SpawnFlag(_currentFlagIndex);
         }
         #endregion
 
-        private void SpawnFlag(int index) {
+        public void SpawnFlag(int index) {
             if (_currentFlag != null) {
                 Destroy(_currentFlag);
             }
             _currentFlag = Instantiate(_Flags[index], _flagSpawn.transform);
             GUIHandler.UpdateGUI_Static();
-
         }
 
         public void ClampFlagIndex() { //wrap around list
             if (_Flags.Count == 0) {
-                Debug.LogWarning("ClampIndex: missing difficulty setup!");
                 return;
             }
 
@@ -61,14 +59,12 @@ namespace FinalYear.FlagPainter {
         }
 
         public void NextFlag() {
-            Debug.Log("Increment Flag Index");
             _currentFlagIndex++;
             ClampFlagIndex();
             SpawnFlag(_currentFlagIndex);
         }
 
         public void PreviousFlag() {
-            Debug.Log("Decrement Flag Index");
             _currentFlagIndex--;
             ClampFlagIndex();
             SpawnFlag(_currentFlagIndex);

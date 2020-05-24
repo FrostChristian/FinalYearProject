@@ -3,7 +3,6 @@
 * christian.dennis.frost@gmail.com
 */
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,13 +25,20 @@ namespace FinalYear.FlagPainter {
             ColorFillSoundThree,
             WinSoundOne,
             EraserSoundOne,
+            Background
+        }
+
+        public static void ToggleAudio() {
+            if (oneShotAudioSource.volume <= 0f) {
+                oneShotAudioSource.volume = 1f;
+                _isMuted = false;
+            } else {
+                oneShotAudioSource.volume = 0f;
+                _isMuted = true;
+            }
         }
 
         public static void PlaySound(Sounds sound) {
-            if (_isMuted) { // dont play sound if muted
-                return;
-            }
-
             if (oneShotGameObject == null) {
                     oneShotGameObject = new GameObject("SoundSource");
                     oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
@@ -40,11 +46,18 @@ namespace FinalYear.FlagPainter {
                 oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
 
-        public static void PlayRandomSound(string containsString) {
-            if (_isMuted) { // dont play sound if muted
-                return;
+        public static void PlayBackgroundSound(Sounds sound) {
+            if (oneShotGameObject == null) {
+                oneShotGameObject = new GameObject("SoundSource");
+                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
             }
 
+            oneShotAudioSource.clip = GetAudioClip(sound);
+            oneShotAudioSource.loop = true;
+            oneShotAudioSource.Play();
+        }
+
+        public static void PlayRandomSound(string containsString) {
             if (oneShotGameObject == null) {
                 oneShotGameObject = new GameObject("One Shot Sound");
                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
@@ -58,7 +71,6 @@ namespace FinalYear.FlagPainter {
                     return gameAudioClip.audioClip;
                 }
             }
-            Debug.LogError("Sound " + sound + " not found!");
             return null;
         }
 
@@ -74,10 +86,7 @@ namespace FinalYear.FlagPainter {
             if (tempList.Count != 0) { // if temp list is not empty
             return tempList[UnityEngine.Random.Range(0, tempList.Count)]; // get random value from list
             }
-
-            Debug.LogError("Sound " + soundName + " not found!");
             return null;
-        }
-       
+        }       
     }
 }

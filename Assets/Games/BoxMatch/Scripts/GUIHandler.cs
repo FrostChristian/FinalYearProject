@@ -66,10 +66,10 @@ namespace FinalYear.BoxMatch {
                 animator.SetBool("Open", !isOpen);
             } else {
                 OnDialogPanelOpen?.Invoke(this, EventArgs.Empty); // fire event for card animation
+                SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundOne);
                 animator.SetBool("Open", !isOpen);
                 yield return new WaitForSeconds(.5f);
                 dialogPanel.SetActive(false);
-
             }
         }
 
@@ -99,7 +99,7 @@ namespace FinalYear.BoxMatch {
             headerText.text = "Let's think about it!";
             stereotypeText.text = ""; //card.Name;
             questionText.text = ""; //"Does >" + card.Name + "< really fit in to box >" + box + "< ?";
-            explanationText.text = "Info: " + card.GetDescriptionShort;
+            explanationText.text = card.GetDescriptionShort;
 
             ShowCardInfoInDialogPanel(card);
             ToggleDialogPanel();
@@ -112,7 +112,7 @@ namespace FinalYear.BoxMatch {
         }
 
         public void ShowWinPanel() {
-            endText.text = "Play Again?";
+            endText.text = "Do you want to play more cards?";
             winPanel.SetActive(true);
         }
 
@@ -124,8 +124,11 @@ namespace FinalYear.BoxMatch {
         }
 
         public void OnMuteClicked() {
+
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
             SoundHandler.ToggleAudio();
-            if (!SoundHandler._isMuted) {
+
+            if (!SoundHandler._isMuted) { // switch btn sprites
                 muteBtn.GetComponent<Image>().sprite = muteOffSprite;
             } else {
                 muteBtn.GetComponent<Image>().sprite = muteOnSprite;
@@ -133,9 +136,11 @@ namespace FinalYear.BoxMatch {
         }
 
         public void OnRestartClicked() {
+            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
             CardHandler.Instance.SpawnCards();
             UpdateGUI();
             winPanel.SetActive(false);
+
         }
     }
 }
