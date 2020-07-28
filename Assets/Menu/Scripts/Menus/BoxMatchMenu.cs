@@ -9,7 +9,6 @@ namespace FinalYear {
        [SerializeField] private float _playDelay = 0.01f;
 
         public override void OnBackPressed() {
-            SoundHandler.PlaySound(SoundHandler.Sounds.ButtonPressSoundTwo);
             //LevelLoader.LoadLevel(1);
             SceneManager.LoadScene(1);
             Screen.orientation = ScreenOrientation.Portrait;

@@ -11,7 +11,7 @@ Project:
 Flagpainter:
  - Removed flag: Polysexual
  - Changed Animations slightly
- - Added dialog window with animation
+ - Added dialog window + animation
  - Added background music
  - Added new interface sounds
  - Fixed sortinglayer issues in Unity

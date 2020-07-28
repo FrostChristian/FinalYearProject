@@ -50,9 +50,9 @@ namespace FinalYear.FlagPainter {
 
         private void Start() {
             SoundHandler.PlayBackgroundSound(SoundHandler.Sounds.Background);
-           // if (SceneManager.GetActiveScene().name == "FlagPainter") {
-           //     FlagPainterMenu.Open();
-           // }
+           if (SceneManager.GetActiveScene().name == "FlagPainter") {
+                FlagPainterMenu.Open();
+            }
         }
 
         private void Update() {
